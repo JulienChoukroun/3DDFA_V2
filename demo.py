@@ -45,9 +45,9 @@ def main(args):
     # Detect faces, get 3DMM params and roi boxes
     boxes = face_boxes(img)
     n = len(boxes)
-    if n == 0:
-        print(f'No face detected, exit')
-        sys.exit(-1)
+    #if n == 0:
+        #print(f'No face detected, exit')
+        #sys.exit(-1)
     print(f'Detect {n} faces')
 
     param_lst, roi_box_lst = tddfa(img, boxes)
@@ -57,7 +57,7 @@ def main(args):
     old_suffix = get_suffix(args.img_fp)
     new_suffix = f'.{args.opt}' if args.opt in ('ply', 'obj') else '.jpg'
 
-    wfp = f'examples/results/{args.img_fp.split("/")[-1].replace(old_suffix, "")}_{args.opt}' + new_suffix
+    wfp = f'/content/ImagesAlgo/{args.img_fp.split("/")[-1].replace(old_suffix, "")}_{args.opt}' + new_suffix
 
     ver_lst = tddfa.recon_vers(param_lst, roi_box_lst, dense_flag=dense_flag)
 
