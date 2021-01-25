@@ -94,7 +94,7 @@ def build_camera_box(rear_size=90):
     return point_3d
 
 
-def plot_pose_box(img, P, ver, color=(40, 255, 0), line_width=2):
+def plot_pose_box(img, P, ver, pose, line_width=2):
     """ Draw a 3D box as annotation of pose.
     Ref:https://github.com/yinguobing/head-pose-estimation/blob/master/pose_estimator.py
     Args:
@@ -102,6 +102,10 @@ def plot_pose_box(img, P, ver, color=(40, 255, 0), line_width=2):
         P: (3, 4). Affine Camera Matrix.
         kpt: (2, 68) or (3, 68)
     """
+    if (pose[0]>-6 and pose[0]<6 and pose[1]>-10 and pose[1]<10):
+        color=(40, 255, 0)
+    else:
+        color=(0, 0, 255)
     llength = calc_hypotenuse(ver)
     point_3d = build_camera_box(llength)
     # Map to 2d image points
@@ -127,7 +131,7 @@ def plot_pose_box(img, P, ver, color=(40, 255, 0), line_width=2):
 def viz_pose(img, param_lst, ver_lst, show_flag=False, wfp=None):
     for param, ver in zip(param_lst, ver_lst):
         P, pose = calc_pose(param)
-        img = plot_pose_box(img, P, ver)
+        img = plot_pose_box(img, P, ver, pose)
         # print(P[:, :3])
         print(f'yaw: {pose[0]:.1f}, pitch: {pose[1]:.1f}, roll: {pose[2]:.1f}')
 
