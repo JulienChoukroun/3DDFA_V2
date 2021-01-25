@@ -131,7 +131,7 @@ def draw_landmarks(img, pts, style='fancy', wfp=None, show_flag=False, **kwargs)
         print(i)
         print(np.linalg.norm(pts[i][1, 62]-pts[i][1, 66])/np.linalg.norm(pts[i][1, 51]-pts[i][1, 57]))
         norme = np.linalg.norm(pts[i][1, 62]-pts[i][1, 66])/np.linalg.norm(pts[i][1, 51]-pts[i][1, 57])
-        if norme<0.4:
+        if norme<0.32:
             coul='r'
         else:
             coul='g'
