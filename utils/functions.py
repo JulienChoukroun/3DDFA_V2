@@ -122,13 +122,26 @@ def draw_landmarks(img, pts, style='fancy', wfp=None, show_flag=False, **kwargs)
     if not type(pts) in [tuple, list]:
         pts = [pts]
     for i in range(len(pts)):
+        #plt.plot(pts[i][0, 62], pts[i][1, 62], 'or')
+        #plt.plot(pts[i][0, 66], pts[i][1, 66], 'or')
+        #plt.plot(pts[i][0, 51], pts[i][1, 51], 'bo')
+        #plt.plot(pts[i][0, 57], pts[i][1, 57], 'bo')
+        
+        print("i")
+        print(i)
+        print(np.linalg.norm(pts[i][1, 62]-pts[i][1, 66])/np.linalg.norm(pts[i][1, 51]-pts[i][1, 57]))
+        norme = np.linalg.norm(pts[i][1, 62]-pts[i][1, 66])/np.linalg.norm(pts[i][1, 51]-pts[i][1, 57])
+        if norme<0.4:
+            coul='r'
+        else:
+            coul='g'
         if dense_flag:
             plt.plot(pts[i][0, ::6], pts[i][1, ::6], 'o', markersize=0.4, color='c', alpha=0.7)
         else:
             alpha = 0.8
-            markersize = 4
+            markersize = 2
             lw = 1.5
-            color = kwargs.get('color', 'w')
+            color = kwargs.get('color', coul)
             markeredgecolor = kwargs.get('markeredgecolor', 'black')
 
             nums = [0, 17, 22, 27, 31, 36, 42, 48, 60, 68]
