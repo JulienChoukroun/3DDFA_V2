@@ -102,7 +102,7 @@ def plot_pose_box(img, P, ver, pose, line_width=2):
         P: (3, 4). Affine Camera Matrix.
         kpt: (2, 68) or (3, 68)
     """
-    if (pose[0]>-6 and pose[0]<6 and pose[1]>-10 and pose[1]<10):
+    if (pose[0]>-6 and pose[0]<6 and pose[1]>0 and pose[1]<30):
         color=(40, 255, 0)
     else:
         color=(0, 0, 255)
